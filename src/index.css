@@ -1,0 +1,339 @@
+@import "tailwindcss";
+
+/* Override default bluish-slate palette with Google AI Studio Charcoal Black palette */
+@theme {
+  --color-slate-50: #fafafa;
+  --color-slate-100: #f4f4f5;
+  --color-slate-200: #e4e4e7;
+  --color-slate-300: #d4d4d8;
+  --color-slate-400: #9aa0a6;
+  --color-slate-500: #71717a;
+  --color-slate-600: #52525b;
+  --color-slate-700: #35363a;
+  --color-slate-800: #242528;
+  --color-slate-900: #161719;
+  --color-slate-950: #0e0e10;
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Cairo', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading: 'Cairo', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0e0e10;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0e0e10;
+}
+html.light-mode ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #242528;
+  border-radius: 3px;
+}
+html.light-mode ::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.08); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes tickerLeftToRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-ticker-ltr {
+  display: flex;
+  width: max-content;
+  animation: tickerLeftToRight 32s linear infinite;
+}
+
+.animate-ticker-ltr:hover {
+  animation-play-state: paused;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================================
+   COMPREHENSIVE HIGH-CONTRAST LIGHT MODE ENGINE
+   Adapts all surfaces, gradients, borders, and typography to a high-contrast
+   Alabaster/Ivory Light theme while preserving cinema photo overlays (.dark-media-card)
+   ============================================================================ */
+html.light-mode body,
+html.light-mode .app-root-shell,
+.light-mode.app-root-shell {
+  background-color: #f1f5f9 !important;
+  color: #090d16 !important;
+}
+
+/* Input & Textarea Placeholders in Light Mode */
+html.light-mode :not(.dark-media-card):not(.dark-media-card *) input::placeholder,
+html.light-mode :not(.dark-media-card):not(.dark-media-card *) textarea::placeholder {
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+
+/* Surface, Gradient, Border & High-Contrast Typography Overrides */
+html.light-mode :not(.dark-media-card):not(.dark-media-card *) {
+  /* Deep Slate 950 Surfaces -> Crisp Soft Alabaster (#f8fafc) for inner boxes & inputs */
+  &.bg-slate-950,
+  &.bg-slate-950\/95,
+  &.bg-slate-950\/90,
+  &.bg-slate-950\/85,
+  &.bg-slate-950\/80,
+  &.bg-slate-950\/75,
+  &.bg-slate-950\/70,
+  &.bg-slate-950\/65,
+  &.bg-slate-950\/60,
+  &.bg-slate-950\/50,
+  &.bg-slate-950\/40,
+  &.bg-slate-950\/30,
+  &.bg-\[\#0D0D0D\],
+  &.bg-\[\#111111\] {
+    background-color: #f8fafc !important;
+  }
+
+  /* Slate 900 Surfaces -> Crisp Pure White (#ffffff) for primary cards & sections */
+  &.bg-slate-900,
+  &.bg-slate-900\/95,
+  &.bg-slate-900\/90,
+  &.bg-slate-900\/85,
+  &.bg-slate-900\/80,
+  &.bg-slate-900\/75,
+  &.bg-slate-900\/70,
+  &.bg-slate-900\/65,
+  &.bg-slate-900\/60,
+  &.bg-slate-900\/50,
+  &.bg-slate-900\/40,
+  &.bg-slate-900\/30,
+  &.bg-\[\#141414\],
+  &.bg-\[\#161719\] {
+    background-color: #ffffff !important;
+  }
+
+  /* Slate 800 & 700 Surfaces -> Soft Cool Ivory Gray (#f1f5f9) */
+  &.bg-slate-800,
+  &.bg-slate-800\/90,
+  &.bg-slate-800\/80,
+  &.bg-slate-800\/70,
+  &.bg-slate-800\/60,
+  &.bg-slate-800\/50,
+  &.bg-slate-800\/40,
+  &.bg-slate-700,
+  &.bg-slate-700\/80,
+  &.bg-slate-700\/60,
+  &.bg-\[\#171717\],
+  &.bg-\[\#1A1A1A\] {
+    background-color: #f1f5f9 !important;
+  }
+
+  &.bg-red-950\/40 {
+    background-color: #fef2f2 !important;
+  }
+
+  /* Refined Architectural Shadows in Light Mode (No muddy dark edges) */
+  &.shadow-2xl,
+  &.shadow-xl,
+  &.shadow-lg {
+    box-shadow: 0 6px 24px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04) !important;
+  }
+
+  /* Dark Gradients -> Luxury Light Ivory / Warm Gold Gradients */
+  &.from-slate-950,
+  &.from-slate-900,
+  &.from-slate-700,
+  &.from-\[\#141414\] {
+    --tw-gradient-from: #ffffff !important;
+  }
+
+  &.via-slate-950,
+  &.via-slate-900,
+  &.via-slate-950\/80,
+  &.via-slate-950\/75,
+  &.via-slate-950\/60 {
+    --tw-gradient-via: #f8fafc !important;
+  }
+
+  &.to-slate-950,
+  &.to-slate-900,
+  &.to-slate-950\/40,
+  &.to-\[\#0D0D0D\] {
+    --tw-gradient-to: #f1f5f9 !important;
+  }
+
+  &.to-amber-950\/20 {
+    --tw-gradient-to: rgba(245, 158, 11, 0.14) !important;
+  }
+
+  /* Borders & Dividers -> Crisp Visible Slate 300 (#cbd5e1) */
+  &.border-slate-900,
+  &.border-slate-800,
+  &.border-slate-800\/90,
+  &.border-slate-800\/80,
+  &.border-slate-800\/70,
+  &.border-slate-800\/60,
+  &.border-slate-700,
+  &.border-slate-700\/80,
+  &.border-slate-700\/60,
+  &.border-white\/10,
+  &.border-white\/15,
+  &.border-white\/20,
+  &.border-white\/5 {
+    border-color: #cbd5e1 !important;
+  }
+
+  &.divide-slate-800 > :not(:last-child),
+  &.divide-white\/10 > :not(:last-child),
+  &.divide-white\/5 > :not(:last-child) {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Primary Headings & High-Emphasis Text -> Deep Ink Black (#090d16) */
+  &.text-white:not(.bg-red-600):not(.bg-red-500):not(.bg-rose-600):not(.bg-rose-500):not(.bg-emerald-600):not(.bg-emerald-500):not(.bg-emerald-500\/80):not(.bg-amber-600):not(.bg-amber-500):not(.bg-blue-600):not(.bg-blue-500),
+  &.text-slate-100,
+  &.text-zinc-100 {
+    color: #090d16 !important;
+  }
+
+  /* Body & Secondary Text -> Crisp Dark Slate 800 (#1e293b) */
+  &.text-slate-200,
+  &.text-slate-300,
+  &.text-zinc-200,
+  &.text-zinc-300 {
+    color: #1e293b !important;
+  }
+
+  /* Muted / Subtitle / Label Text -> Strong Legible Slate 700 (#334155) - Never Faded! */
+  &.text-slate-400,
+  &.text-slate-500,
+  &.text-zinc-400,
+  &.text-zinc-500 {
+    color: #334155 !important;
+  }
+
+  /* Royal Gold / Amber Accents -> High-Contrast Deep Bronze Gold (#92400e) */
+  &.text-amber-400,
+  &.text-amber-300,
+  &.text-amber-200,
+  &.text-amber-300\/80,
+  &.text-amber-300\/85,
+  &.text-amber-400\/90,
+  &.text-\[\#D4AF37\] {
+    color: #92400e !important;
+  }
+
+  /* Emerald Accents -> Deep Emerald 800 (#065f46) */
+  &.text-emerald-400,
+  &.text-emerald-300,
+  &.text-emerald-200 {
+    color: #065f46 !important;
+  }
+
+  /* Sky, Blue & Cyan Accents -> Deep Sky 800 (#075985) */
+  &.text-sky-400,
+  &.text-sky-300,
+  &.text-blue-400,
+  &.text-blue-300,
+  &.text-cyan-400,
+  &.text-cyan-300 {
+    color: #075985 !important;
+  }
+
+  /* Purple Accents -> Deep Purple 800 (#5b21b6) */
+  &.text-purple-400,
+  &.text-purple-300 {
+    color: #5b21b6 !important;
+  }
+
+  /* Rose & Red Accents -> Deep Crimson 700 (#b91c1c) */
+  &.text-rose-400,
+  &.text-rose-300,
+  &.text-red-400,
+  &.text-red-300,
+  &.text-red-200 {
+    color: #b91c1c !important;
+  }
+}
+
+/* ============================================================================
+   A4 PRINTING ENGINE & MODAL PRINT ISOLATION
+   ============================================================================ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+  
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide navigation, fixed backgrounds, backdrop blur and UI toolbars during print */
+  body > * {
+    visibility: hidden;
+  }
+
+  #printable-contract,
+  #printable-contract * {
+    visibility: visible;
+  }
+
+  #printable-contract {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 9999999 !important;
+  }
+
+  .no-print,
+  .print-hidden,
+  .print\:hidden {
+    display: none !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Sana'a Royal Auto & Chauffeur",
+  "description": "منصة الشركة المتحدة لتأجير السيارات في صنعاء واليمن — تأجير يومي وشهري وسنوي للأفراد والشركات والمنظمات الدولية",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
